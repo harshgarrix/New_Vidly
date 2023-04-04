@@ -1,0 +1,80 @@
+﻿@model New_Vidly.ViewModel.ListCustomerViewModel
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>List of Customers</h3>
+<br />
+@Html.ActionLink("Add New Customer", "EditDetails", "Customer", new { id = 0 }, new { @class = "btn btn-default btn-primary", @role = "button" })
+<br />
+<br />
+@*@if (Model.Customers.Count == 0)
+    {
+        <text>We don't have any customers yet.</text>
+    }
+    else
+    {
+        @Html.Partial("_table")
+    }*@
+@Html.Partial("_table")
+@section scripts
+{
+    <script>
+        $(function () {
+            var table = $("#customers").DataTable({
+                ajax: {
+                    url: "/api/customers",
+                    type:"GET",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "name",
+                        render: function (data, type, customer) {
+                            return "<a href='/Customer/Details/" + customer.id + "'>" + customer.name + "</a>";
+                        }
+                    },
+                    {
+                        data: "membershipType.name"
+                    },
+                    {
+                        data: "id",
+                        render: function (data) {
+                            return "<button type='button' class='btn btn-link js-delete' data-customer-id=" + data + ">Delete</button>";
+                        }
+                    }
+                ]
+            });
+            $("#customers").on("click", ".js-delete", function () {
+                var button = $(this);
+                bootbox.confirm({
+                    title: 'Confirmation',
+                    message: 'Are you sure you want to delete this customer?',
+                    buttons: {
+                        cancel: {
+                            label: 'Cancel',
+                            className: 'btn-secondary'
+                        },
+                        confirm: {
+                            label: 'Delete',
+                            className: 'btn-danger'
+                        }
+                    },
+                    callback: function (result) {
+                        if (result) {
+                            $.ajax({
+                                url: "/api/customers/" + button.attr("data-customer-id"),
+                                method: "DELETE",
+                                success: function () {
+                                    table.row(button.parents("tr")).remove().draw();
+                                }
+                            });
+                        }
+                    }
+                });
+            });
+        });
+
+    </script>
+}

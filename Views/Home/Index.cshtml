@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Harsh Video Rentals</h1>
+    <p class="lead">Welcome to Harsh's Video Rental store. Feel free to rent movies after Registering yourself. Find more information below.</p>
+    <p>@Html.ActionLink("Learn More", "About", "Home", new { @class = "btn btn-primary", @role = "button" })&raquo;</p>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-4">
+        <h2>Contact Me</h2>
+        <p>
+            If you want to contact me Email me. I'll make sure I reply within 24 hours. Otherwise you can drop me message on my contact number.
+        </p>
+        <p>@Html.ActionLink("Contact", "Contact", "Home", new { @class = "btn btn-secondary", @role = "button" })&raquo;</p>
+    </div>
+    <div class="col-md-4">
+        <h2>Errors?</h2>
+        <p>Feel free to email me if you're getting any errors. I'll try to resolve them as soon as possible.</p>
+    </div>
+    <div class="col-md-4">
+        <h2>This Website</h2>
+        <p>&copy; Developed and Tested by Harsh Lakhlotra. Thankyou for visiting.</p>
+    </div>
+</div>

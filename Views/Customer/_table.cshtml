@@ -1,0 +1,22 @@
+﻿@model New_Vidly.ViewModel.ListCustomerViewModel
+<table id="customers" class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Customer Name</th>
+            <th scope="col">Membership Type</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+        <tbody>
+            @*@foreach (var customer in Model.Customers)
+            {
+                <tr class="table-active">
+                    <td>@Html.ActionLink(customer.Name, "Details", "Customer", new {id = customer.Id}, null)</td>
+                    <td>@customer.MembershipType.Name</td>
+                    <td>
+                        <button type="button" data-customer-id="@customer.Id" class="btn btn-link js-delete">Delete</button>
+                    </td>
+                </tr>
+            }*@
+        </tbody>
+</table>
